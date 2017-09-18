@@ -17,11 +17,14 @@ def savevcard(out_file, card):
             final.write("\n{}:{}".format(k,v))
         for (k,v) in card.email:
             final.write("\n{}:{}".format(k,v))
-
         final.write("\nEND:VCARD\n")
 
 
 def validateTel(card):
+    phones = []
+    for (k,v) in card.tel:
+        if re.search('^00', v):
+            re.sub('^00', '+', v)
     return 0
 
 def validateEmail(card):
